@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>김이훈 법률사무소 | 상표·특허 출원 도우미</title>
-<meta name="version" content="v1.13 / ES-20261028-008">
+<meta name="version" content="v1.14 / ES-20261028-013">
 <meta name="description" content="상표·특허를 직접 출원하는 분을 위한 무료 도구. 지정상품 고시명칭 54,177건 검색, 셀프진단, 출원비용 계산기, 단계별 나홀로 출원 가이드. 김이훈 법률사무소.">
 <meta name="author" content="김이훈 법률사무소">
 <meta name="keywords" content="상표출원,특허출원,지정상품,고시명칭,유사군코드,셀프출원,나홀로출원,출원비용,관납료,상표 셀프진단,니스분류">
@@ -63,6 +63,7 @@
   "serviceType": ["상표 출원", "특허 출원", "실용신안 출원", "디자인 출원", "지식재산권 자문"]
 }
 </script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root{
@@ -134,6 +135,13 @@
   .filter-row select{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit;background:#fff;color:var(--ink)}
   .filter-row .check{display:flex;align-items:center;gap:6px;cursor:pointer}
   .results{position:relative}
+  .class-note{background:var(--gold-soft);border-radius:10px;padding:10px 14px;margin-top:10px;
+    font-size:13.5px;color:var(--ink);line-height:1.6}
+  .class-note b{color:var(--navy)}
+  .class-note .picks{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+  .class-note .picks button{border:1px solid var(--gold);background:#fff;color:var(--navy);
+    border-radius:999px;padding:3px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}
+  .class-note .picks button:hover{background:var(--gold);color:#fff}
   .result-note{font-size:13px;color:var(--muted);margin:10px 0 0}
   .result-note b{color:var(--ink)}
   .kind{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:600;white-space:nowrap}
@@ -324,6 +332,7 @@
           <label class="check"><input type="checkbox" id="goodsNoticeOnly"> 고시명칭만 보기</label>
           <label class="check"><input type="checkbox" id="goodsRetail"> 35류 도소매업 명칭 포함</label>
         </div>
+        <p class="class-note" id="classNote" hidden></p>
         <div class="results" id="goodsResults"></div>
         <p class="result-note" id="goodsNote"></p>
         <div class="help-bar">
@@ -699,15 +708,60 @@ function loadRetail(){
   return goodsStore.retailLoading;
 }
 
+/* 류 설명 (data/classes.json). 없어도 검색은 그대로 됩니다. */
+let CLASSES = null;
+fetch('data/classes.json')
+  .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(d => { CLASSES = d['류'] || null; relabelClasses(); })
+  .catch(err => console.warn('classes.json 을 불러오지 못했습니다:', err.message));
+
+function classLabel(c){
+  const info = CLASSES && CLASSES[c];
+  if(info && info['대표'] && info['대표'].length)
+    return '제' + c + '류 · ' + info['대표'].join(' · ');
+  return '제' + c + '류' + (c <= 34 ? ' (상품)' : ' (서비스)');
+}
+
 function fillClassFilter(){
   const sel = document.getElementById('goodsClass');
   if(sel.options.length > 1) return;
   for(let c = 1; c <= 45; c++){
     const o = document.createElement('option');
     o.value = String(c);
-    o.textContent = '제' + c + '류' + (c <= 34 ? ' (상품)' : ' (서비스)');
+    o.textContent = classLabel(c);
     sel.appendChild(o);
   }
+}
+
+/* classes.json 이 늦게 와도 목록 글자를 바꿔 줍니다 */
+function relabelClasses(){
+  const sel = document.getElementById('goodsClass');
+  for(const o of sel.options){
+    const c = parseInt(o.value, 10);
+    if(c) o.textContent = classLabel(c);
+  }
+  showClassNote();
+}
+
+function showClassNote(){
+  const box = document.getElementById('classNote');
+  const c = parseInt(document.getElementById('goodsClass').value, 10);
+  const info = (c && CLASSES) ? CLASSES[c] : null;
+  if(!info){ box.hidden = true; return; }
+  box.innerHTML = '<b>제' + c + '류</b> — ' + esc(info['설명'] || '')
+    + '<span class="picks">'
+    + (info['대표'] || []).map(w =>
+        '<button type="button" onclick="pickGoods(this.textContent)">' + esc(w) + '</button>').join('')
+    + '</span>';
+  box.hidden = false;
+}
+
+/* 대표 낱말을 누르면 그 말로 검색합니다 */
+function pickGoods(word){
+  const inp = document.getElementById('goodsInput');
+  inp.value = word;
+  searchGoods();
+  inp.focus();
 }
 
 /* ---- 검색어 처리 ---- */
@@ -905,7 +959,7 @@ function goodsSourceNote(){
 /* ---- 이벤트 ---- */
 document.getElementById('goodsInput').addEventListener('keydown', e => { if(e.key === 'Enter') searchGoods(); });
 document.getElementById('goodsInput').addEventListener('input', searchGoodsDebounced);
-document.getElementById('goodsClass').addEventListener('change', searchGoods);
+document.getElementById('goodsClass').addEventListener('change', () => { showClassNote(); searchGoods(); });
 document.getElementById('goodsNoticeOnly').addEventListener('change', searchGoods);
 document.getElementById('goodsRetail').addEventListener('change', searchGoods);
 
