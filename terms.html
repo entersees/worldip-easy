@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     이용 안내 — 오픈 전 사무소 검토 필요
+
+     본 사이트의 성격(참고용 정보 제공)과 책임 범위를 밝히는 문서입니다.
+     법률사무소 사이트이므로 아래를 확인해 주세요.
+
+       · 시행일 (현재 2026년 12월 1일)
+       · "법률 자문이 아니다" 는 표현 수위가 사무소 입장과 맞는지
+       · 담당 구분(출원실무 전문가 / 변호사)이 실제 운영과 맞는지
+       · 변호사 광고 규정상 추가로 표시해야 할 사항이 있는지
+         (CLAUDE.md 에 "사업자등록번호·광고책임변호사는 표시하지 않기로 함" 으로
+          적혀 있으나, 표시 의무 여부는 오픈 전 확인이 필요합니다)
+     ============================================================ -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이용 안내 | 김이훈 법률사무소</title>
+<meta name="description" content="상표·특허 출원 도우미의 이용 안내와 책임 범위, 데이터 출처 안내입니다.">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    /* 본 사이트(entersees/worldip-site)와 같은 색입니다. index.html 과 함께 고치세요. */
+    --navy:#1a2b5c; --navy-deep:#0f1b3d; --gold:#b8973f; --gold-soft:#efe7d2;
+    --ink:#1e2433; --muted:#5b6478; --line:#e3e6ee; --bg:#f6f3ec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Pretendard,'Malgun Gothic',sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;font-size:16px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  header{background:var(--navy);color:#fff;padding:18px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  header a.home{color:#fff;text-decoration:none;font-weight:800;font-size:17px}
+  header a.home span{display:block;font-weight:400;font-size:12.5px;color:#b9c3d6;margin-top:2px}
+  header a.back{color:var(--gold);text-decoration:none;font-weight:700;font-size:14px}
+  main{background:#fff;margin:28px auto 40px;max-width:820px;border:1px solid var(--line);border-radius:14px;padding:40px 36px}
+  h1{font-size:28px;color:var(--navy);letter-spacing:-.5px}
+  .meta{color:var(--muted);font-size:14px;margin-top:10px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  h2{font-size:18px;color:var(--navy);margin:34px 0 10px}
+  p{margin:10px 0}
+  ul{margin:10px 0 10px 20px}
+  li{margin:6px 0}
+  .box{background:var(--gold-soft);border-radius:10px;padding:16px 18px;margin:16px 0;font-size:15px}
+  .box b{color:#8a6a3c}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  th{background:var(--bg);color:var(--muted);font-weight:600;white-space:nowrap}
+  footer{color:var(--muted);font-size:13.5px;text-align:center;padding:0 20px 40px}
+  footer a{color:var(--navy)}
+  @media(max-width:640px){
+    main{padding:26px 20px;margin:18px auto 30px;border-radius:0;border-left:0;border-right:0}
+    h1{font-size:23px}
+    th,td{display:block;width:100%;border:0;padding:4px 0}
+    th{padding-top:10px}
+    td{padding-bottom:10px;border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="home" href="index.html">김이훈 법률사무소<span>상표 · 특허 출원 도우미</span></a>
+    <a class="back" href="index.html">← 도우미로 돌아가기</a>
+  </div>
+</header>
+
+<main>
+  <h1>이용 안내</h1>
+  <p class="meta">시행일 2026년 12월 1일</p>
+
+  <div class="box">
+    <p><b>먼저 알아두실 점</b> — 본 사이트의 검색·진단·계산·가이드는 직접 출원을 준비하시는 분을 돕기 위한
+    <b>참고용 정보</b>입니다. 개별 사건에 대한 법률 자문을 대신하지 않으며,
+    실제 심사 결과를 보장하지 않습니다.</p>
+  </div>
+
+  <h2>1. 본 사이트의 성격</h2>
+  <p>김이훈 법률사무소는 상표·특허를 직접 출원하려는 분들이 비용을 아끼고 시행착오를 줄이실 수 있도록
+  본 사이트를 무료로 제공합니다. 제공하는 기능은 다음과 같습니다.</p>
+  <ul>
+    <li>지정상품 검색 — 특허청 고시명칭과 유사명칭을 상품류·유사군코드와 함께 찾아보기</li>
+    <li>유사특허·상표 검색 — 외부 검색 서비스로 연결</li>
+    <li>셀프진단 — 상표법·특허법의 주요 거절 사유를 스스로 점검</li>
+    <li>출원비용 계산기 — 특허청에 내는 비용(관납료) 계산</li>
+    <li>나홀로 출원 가이드 — 단계별 절차 안내</li>
+  </ul>
+
+  <h2>2. 참고용 정보라는 뜻</h2>
+  <p>본 사이트의 기능은 일반적인 기준에 따라 자동으로 계산·안내하는 것으로, 다음과 같은 한계가 있습니다.</p>
+  <ul>
+    <li><b>셀프진단</b>은 법에서 정한 주요 거절 사유를 간단한 질문으로 점검하는 것입니다.
+      실제 심사는 선행 상표·선행 기술, 거래 실정 등을 종합해 판단하므로 결과가 다를 수 있습니다.</li>
+    <li><b>출원비용 계산기</b>는 전자출원을 기준으로 한 금액입니다. 감면 적용 여부, 출원인 요건,
+      제출 서류에 따라 실제 금액이 달라질 수 있습니다.</li>
+    <li><b>지정상품 검색</b>의 명칭 중 "유사명칭"은 고시명칭이 아니므로 심사 과정에서
+      보정이 필요할 수 있습니다. 출원서에는 되도록 고시명칭을 사용하시기 바랍니다.</li>
+    <li>법령·고시·수수료는 개정될 수 있으며, 개정 직후에는 본 사이트의 내용이
+      최신과 다를 수 있습니다.</li>
+  </ul>
+  <p>중요한 판단을 앞두고 계시다면 출원 전에 전문가의 검토를 받으시기를 권합니다.</p>
+
+  <h2>3. 데이터 출처와 기준일</h2>
+  <table>
+    <tr><th>지정상품 명칭</th>
+      <td>지식재산처 「상품의 명칭과 류 구분에 관한 고시」 별표1 (니스분류 제12판 기준) 및
+        특허청 유사상품 명칭 목록</td></tr>
+    <tr><th>관납료</th>
+      <td>특허로 수수료정보안내 (2026. 7. 16. 업데이트, 「특허료 등의 징수규칙」 2026. 2. 27. 시행) ·
+        전자출원 기준</td></tr>
+  </table>
+  <p>최신 기준일은 사이트 화면 아래쪽에 함께 표시됩니다.</p>
+
+  <h2>4. 유료 서비스와 담당</h2>
+  <p>무료 기능만으로 해결되지 않는 부분은 유료 서비스로 도와드립니다.
+  비용은 사안에 따라 다르므로 상담 후 안내해 드립니다.</p>
+  <table>
+    <tr><th>출원 상담 · 화상 코칭 · 서류 검토</th><td>출원실무 전문가가 담당합니다</td></tr>
+    <tr><th>법적 판단이 필요한 자문</th><td>변호사가 직접 담당합니다</td></tr>
+  </table>
+  <p>대리인에게 출원을 맡기시는 경우 특허청에 내는 관납료와 별도로 대리인 수수료가 발생합니다.</p>
+
+  <h2>5. 외부 사이트 연결</h2>
+  <p>본 사이트는 특허정보넷 키프리스, Google Patents 등 외부 검색 서비스로 연결되는 링크를 제공합니다.
+  연결된 사이트의 내용과 운영에 대해서는 사무소가 책임지지 않습니다.</p>
+
+  <h2>6. 저작권</h2>
+  <p>본 사이트의 화면 구성, 문구, 가이드, 진단 항목에 대한 권리는 김이훈 법률사무소에 있습니다.
+  무단 복제·배포를 금합니다. 다만 특허청·지식재산처가 공표한 고시 명칭과 수수료 정보 자체는
+  해당 기관의 공공데이터입니다.</p>
+
+  <h2>7. 책임의 한계</h2>
+  <p>사무소는 본 사이트의 정보를 정확하게 유지하기 위해 노력합니다. 다만 본 사이트의 정보를 근거로
+  이용자가 직접 내린 판단과 그 결과에 대해서는 책임을 지지 않습니다.
+  수임 계약을 통해 사무소가 직접 수행한 업무에 대해서는 관계 법령과 계약에 따릅니다.</p>
+
+  <h2>8. 문의</h2>
+  <table>
+    <tr><th>김이훈 법률사무소</th><td>대표 변호사·변리사 김이훈</td></tr>
+    <tr><th>주소</th><td>서울 송파구 법원로8길 7, 화엄타워 301호</td></tr>
+    <tr><th>전화</th><td><a href="tel:18111945">1811-1945</a> (상담 09:00~18:00)</td></tr>
+    <tr><th>이메일</th><td><a href="mailto:info@worldip.co.kr">info@worldip.co.kr</a></td></tr>
+  </table>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html">상표·특허 출원 도우미</a> ·
+    <a href="privacy.html">개인정보처리방침</a><br>
+    김이훈 법률사무소 · 서울 송파구 법원로8길 7, 화엄타워 301호 · 1811-1945
+  </div>
+</footer>
+
+</body>
+</html>

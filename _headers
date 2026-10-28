@@ -1,0 +1,23 @@
+# 캐시·보안 헤더 (Cloudflare Pages / Netlify 전용, GitHub Pages 는 무시)
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  # 아임웹에 iframe 으로 넣는다면 아래 줄의 주소를 실제 아임웹 주소로 바꾸고 주석(#)을 푸세요.
+  # 넣지 않으면 어떤 사이트에서든 iframe 으로 넣을 수 있습니다(이 사이트는 로그인·결제가
+  # 없어 위험이 작지만, 주소를 지정해 두는 편이 안전합니다).
+  # Content-Security-Policy: frame-ancestors 'self' https://worldip.kr https://*.worldip.kr https://*.imweb.me
+
+# HTML 은 항상 최신을 받도록 합니다 (문구를 고치면 바로 반영)
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 지정상품 데이터는 연 1회 고시 개정 때만 바뀝니다
+/data/goods.json
+  Cache-Control: public, max-age=86400
+/data/goods_retail35.json
+  Cache-Control: public, max-age=86400
+
+# 관납료는 수수료 개정 때 바뀌므로 조금 더 짧게
+/data/fees.json
+  Cache-Control: public, max-age=3600
