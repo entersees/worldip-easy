@@ -328,7 +328,7 @@
     <div class="search-box">
       <div class="tabs" role="tablist">
         <button class="tab active" data-panel="p-goods">지정상품 검색</button>
-        <button class="tab" data-panel="p-tm">상표 검색</button>
+        <button class="tab" data-panel="p-tm">유사상표 검색</button>
         <button class="tab" data-panel="p-patent">유사특허 검색</button>
       </div>
 
@@ -342,8 +342,8 @@
         <div class="filter-row">
           <label for="goodsClass">상품류</label>
           <select id="goodsClass"><option value="">전체</option></select>
-          <label class="check"><input type="checkbox" id="goodsNoticeOnly"> 고시명칭만 보기</label>
-          <label class="check"><input type="checkbox" id="goodsRetail"> 35류 도소매업 명칭 포함</label>
+          <label class="check"><input type="checkbox" id="goodsNoticeOnly"> 특허청 표준명칭만 보기 (고시명칭)</label>
+          <label class="check"><input type="checkbox" id="goodsRetail"> 쇼핑몰·도소매 판매업 명칭도 보기 (35류)</label>
         </div>
         <p class="class-note" id="classNote" hidden></p>
         <div class="results" id="goodsResults"></div>
@@ -354,7 +354,7 @@
         </div>
       </div>
 
-      <!-- 상표 검색 (외부 연결 + 셀프진단) -->
+      <!-- 유사상표 검색 (외부 연결 + 셀프진단) -->
       <div class="panel" id="p-tm">
         <div class="search-row">
           <input id="tmInput" type="text" placeholder="예: 카카오, 설빙, 마켓컬리" autocomplete="off">
@@ -1014,7 +1014,7 @@ const GUIDE = {
     ["지정상품 고르기","위 지정상품 검색으로 상품류와 고시명칭, 유사군코드를 확인합니다.",
       '<p class="go"><a href="#search" onclick="openTab(0)">지정상품 검색으로 가기 →</a></p>'],
     ["상표 정하기","문자 상표는 같은 이름이 이미 있는지 먼저 확인하고, 로고는 키프리스에서 도형코드로 찾습니다.",
-      '<p class="go"><span id="stepTMName"></span><a href="#search" onclick="openTab(1)">상표 검색으로 가기 →</a></p>'],
+      '<p class="go"><span id="stepTMName"></span><a href="#search" onclick="openTab(1)">유사상표 검색으로 가기 →</a></p>'],
     ["특허로 가입","특허고객번호를 발급받고 전자서명을 준비합니다.",
       '<p class="go"><a href="https://www.patent.go.kr/smart/jsp/ka/prestep/codeapp/CodeAppIndex.do" target="_blank" rel="noopener">특허로 특허고객등록 →</a></p>'],
     ["출원서 작성·제출","상표 견본과 지정상품을 입력하고 수수료를 납부합니다.",
@@ -1255,7 +1255,7 @@ document.getElementById('calc').addEventListener('input', calc);
 document.getElementById('calc').addEventListener('change', calc);
 loadFees();
 
-/* ---------- 상표 검색 (키프리스 연결) ----------
+/* ---------- 유사상표 검색 (키프리스 연결) ----------
    키프리스는 주소(쿼리스트링)로 검색어를 넘길 수 없습니다. 2026-10-28 확인:
    searchResult.do?tab=trademark&queryText=... 는 제목만 바뀌고 검색이 실행되지 않습니다.
    그래서 검색어를 복사해 두고 키프리스를 새 창으로 엽니다. */
