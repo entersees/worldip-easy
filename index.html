@@ -328,8 +328,8 @@
     <div class="search-box">
       <div class="tabs" role="tablist">
         <button class="tab active" data-panel="p-goods">지정상품 검색</button>
-        <button class="tab" data-panel="p-patent">유사특허 검색</button>
         <button class="tab" data-panel="p-tm">상표 검색</button>
+        <button class="tab" data-panel="p-patent">유사특허 검색</button>
       </div>
 
       <!-- 지정상품 검색 (사이트 내 데이터, API 미사용) -->
@@ -354,23 +354,6 @@
         </div>
       </div>
 
-      <!-- 유사특허 검색 (외부 검색 연결) -->
-      <div class="panel" id="p-patent">
-        <div class="search-row">
-          <input id="patentInput" type="text" placeholder="예: 교차로 위험 경고, 잇몸 치약 조성물" autocomplete="off">
-          <button class="btn btn-primary" onclick="searchPatent()">Google Patents에서 검색</button>
-        </div>
-        <p class="hint">입력한 키워드로 한국 특허 검색 결과를 새 창에서 보여드립니다.</p>
-        <div class="ext-links">
-          <a class="btn btn-ghost" href="https://www.kipris.or.kr" target="_blank" rel="noopener">키프리스에서 검색</a>
-          <a class="btn btn-ghost" href="#selfcheck" onclick="setSC('pat')">특허 셀프진단 해보기</a>
-        </div>
-        <div class="help-bar">
-          <span>검색 결과를 내 발명과 어떻게 비교할지 어렵다면</span>
-          <a href="#expert">화상 상담 →</a>
-        </div>
-      </div>
-
       <!-- 상표 검색 (외부 연결 + 셀프진단) -->
       <div class="panel" id="p-tm">
         <div class="search-row">
@@ -387,6 +370,23 @@
         <div class="help-bar">
           <span>비슷한 상표가 나왔는데 등록이 될지 모르겠다면</span>
           <a href="#expert">등록가능성 리포트 →</a>
+        </div>
+      </div>
+
+      <!-- 유사특허 검색 (외부 검색 연결) -->
+      <div class="panel" id="p-patent">
+        <div class="search-row">
+          <input id="patentInput" type="text" placeholder="예: 교차로 위험 경고, 잇몸 치약 조성물" autocomplete="off">
+          <button class="btn btn-primary" onclick="searchPatent()">Google Patents에서 검색</button>
+        </div>
+        <p class="hint">입력한 키워드로 한국 특허 검색 결과를 새 창에서 보여드립니다.</p>
+        <div class="ext-links">
+          <a class="btn btn-ghost" href="https://www.kipris.or.kr" target="_blank" rel="noopener">키프리스에서 검색</a>
+          <a class="btn btn-ghost" href="#selfcheck" onclick="setSC('pat')">특허 셀프진단 해보기</a>
+        </div>
+        <div class="help-bar">
+          <span>검색 결과를 내 발명과 어떻게 비교할지 어렵다면</span>
+          <a href="#expert">화상 상담 →</a>
         </div>
       </div>
     </div>
@@ -1014,7 +1014,7 @@ const GUIDE = {
     ["지정상품 고르기","위 지정상품 검색으로 상품류와 고시명칭, 유사군코드를 확인합니다.",
       '<p class="go"><a href="#search" onclick="openTab(0)">지정상품 검색으로 가기 →</a></p>'],
     ["상표 정하기","문자 상표는 같은 이름이 이미 있는지 먼저 확인하고, 로고는 키프리스에서 도형코드로 찾습니다.",
-      '<p class="go"><span id="stepTMName"></span><a href="#search" onclick="openTab(2)">상표 검색으로 가기 →</a></p>'],
+      '<p class="go"><span id="stepTMName"></span><a href="#search" onclick="openTab(1)">상표 검색으로 가기 →</a></p>'],
     ["특허로 가입","특허고객번호를 발급받고 전자서명을 준비합니다.",
       '<p class="go"><a href="https://www.patent.go.kr/smart/jsp/ka/prestep/codeapp/CodeAppIndex.do" target="_blank" rel="noopener">특허로 특허고객등록 →</a></p>'],
     ["출원서 작성·제출","상표 견본과 지정상품을 입력하고 수수료를 납부합니다.",
@@ -1038,7 +1038,7 @@ function renderSteps(type){
   syncStepTM();
 }
 
-/* 검색 탭 열기 (0 지정상품 · 1 유사특허 · 2 상표) */
+/* 검색 탭 열기 (0 지정상품 · 1 상표 · 2 유사특허) — 2026-11-03 순서 변경 */
 function openTab(i){
   const t = document.querySelectorAll('.tabs .tab')[i];
   if(t) t.click();
